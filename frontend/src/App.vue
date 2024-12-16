@@ -2,58 +2,68 @@
   <div id="app">
     <nav class="navbar">
       <div class="nav-content">
-        <h1>AI Chat Assistant</h1>
+        <button class="clear-btn" @click="clearChat" :disabled="loading">
+          <i class="fas fa-trash-alt"></i> Clear Chat
+        </button>
         <div class="theme-toggle">
           <button @click="toggleTheme">
-            {{ isDarkTheme ? '☀️ Light' : '🌙 Dark' }}
+            {{ isDarkTheme ? "☀️ Light" : "🌙 Dark" }}
           </button>
         </div>
       </div>
     </nav>
     <main :class="{ 'dark-theme': isDarkTheme }">
-      <ChatInterface />
+      <ChatInterface ref="chatInterface" />
     </main>
   </div>
 </template>
 
 <script>
-import ChatInterface from './components/ChatInterface.vue'
+import ChatInterface from "./components/ChatInterface.vue";
 
 export default {
-  name: 'App',
+  name: "App",
   components: {
-    ChatInterface
+    ChatInterface,
   },
   data() {
     return {
-      isDarkTheme: false
-    }
+      isDarkTheme: false,
+      loading: false,
+    };
   },
   created() {
     // 从localStorage加载主题设置
-    const savedTheme = localStorage.getItem('theme');
+    const savedTheme = localStorage.getItem("theme");
     if (savedTheme) {
-      this.isDarkTheme = savedTheme === 'dark';
+      this.isDarkTheme = savedTheme === "dark";
     } else {
       // 检查系统主题偏好
-      this.isDarkTheme = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      this.isDarkTheme = window.matchMedia(
+        "(prefers-color-scheme: dark)"
+      ).matches;
     }
   },
   methods: {
     toggleTheme() {
       this.isDarkTheme = !this.isDarkTheme;
-      localStorage.setItem('theme', this.isDarkTheme ? 'dark' : 'light');
-    }
-  }
-}
+      localStorage.setItem("theme", this.isDarkTheme ? "dark" : "light");
+    },
+    clearChat() {
+      this.$refs.chatInterface.clearChat();
+    },
+  },
+};
 </script>
 
 <style>
+@import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css");
+
 :root {
   --bg-color: #ffffff;
   --text-color: #2c3e50;
   --nav-bg: #f8f9fa;
-  --nav-text: #2c3e50;
+  --nav-text: #ffffff;
 }
 
 .dark-theme {
@@ -71,7 +81,7 @@ export default {
 
 body {
   margin: 0;
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
+  font-family: "Avenir", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -102,14 +112,32 @@ body {
   align-items: center;
 }
 
-.navbar h1 {
-  margin: 0;
-  font-size: 1.5rem;
-  color: var(--nav-text);
+.clear-btn {
+  background-color: #dc3545;
+  color: white;
+  border: none;
+  padding: 10px 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.3s ease;
+  font-size: 14px;
+}
+
+.clear-btn:hover:not(:disabled) {
+  background-color: #c82333;
+  transform: translateY(-1px);
+}
+
+.clear-btn:disabled {
+  background-color: #dc354580;
+  cursor: not-allowed;
 }
 
 .theme-toggle button {
-  background: none;
+  background: #673ab7;
   border: 1px solid currentColor;
   padding: 0.5rem 1rem;
   border-radius: 4px;
@@ -120,7 +148,7 @@ body {
 }
 
 .theme-toggle button:hover {
-  background-color: rgba(0, 0, 0, 0.1);
+  opacity: 0.8;
 }
 
 main {
@@ -133,10 +161,6 @@ main {
 @media (max-width: 768px) {
   .navbar {
     padding: 0.8rem;
-  }
-
-  .navbar h1 {
-    font-size: 1.2rem;
   }
 
   main {
