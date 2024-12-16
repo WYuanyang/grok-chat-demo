@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>现代贪吃蛇</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="game-container">
+        <div class="game-header">
+            <div class="score">分数: <span id="score">0</span></div>
+            <div class="level">等级: <span id="level">1</span></div>
+            <button id="helpBtn" class="help-btn">?</button>
+        </div>
+        <canvas id="gameCanvas"></canvas>
+        <div class="controls">
+            <button id="startBtn">开始游戏</button>
+            <button id="pauseBtn">暂停</button>
+        </div>
+    </div>
+    <div class="help-panel">
+        <div class="help-content">
+            <h2>游戏说明</h2>
+            <section>
+                <h3>操作方式</h3>  
+                <p>使用键盘方向键控制蛇的移动方向</p>
+            </section>
+            <section>
+                <h3>特殊食物</h3>
+                <ul>
+                    <li>
+                        <span class="food-dot gold"></span>
+                        <span class="food-icon">⚡</span>
+                        金色食物: 临时提升速度
+                    </li>
+                    <li>
+                        <span class="food-dot pink"></span>
+                        <span class="food-icon">★</span>
+                        粉色食物: 额外加50分
+                    </li>
+                    <li>
+                        <span class="food-dot blue"></span>
+                        <span class="food-icon">✂</span>
+                        蓝色食物: 缩短蛇身
+                    </li>
+                </ul>
+            </section>
+            <section>
+                <h3>计分规则</h3>
+                <p>吃到普通食物得10分</p>
+                <p>每100分升一级</p>
+                <p>升级后移动速度加快</p>
+            </section>
+            <button class="close-btn">×</button>
+        </div>
+    </div>
+    <script src="game.js"></script>
+</body>
+</html> 

@@ -1,0 +1,179 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: linear-gradient(135deg, #1a1a1a, #4a4a4a);
+    font-family: Arial, sans-serif;
+}
+
+.game-container {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+}
+
+.game-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    color: #fff;
+    font-size: 1.2em;
+}
+
+canvas {
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+}
+
+.controls {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 20px;
+}
+
+button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    background: #4CAF50;
+    color: white;
+    font-size: 1em;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+button:hover {
+    background: #45a049;
+    transform: translateY(-2px);
+}
+
+#pauseBtn {
+    background: #f44336;
+}
+
+#pauseBtn:hover {
+    background: #da190b;
+}
+
+.help-btn {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background: #2196F3;
+    color: white;
+    font-size: 20px;
+    line-height: 30px;
+    cursor: pointer;
+    border: none;
+    padding: 0;
+    margin-left: 20px;
+    transition: all 0.3s ease;
+}
+
+.help-btn:hover {
+    background: #1976D2;
+    transform: scale(1.1);
+}
+
+.help-panel {
+    position: fixed;
+    top: 0;
+    right: -400px;
+    width: 400px;
+    height: 100vh;
+    background: rgba(255, 255, 255, 0.95);
+    box-shadow: -5px 0 15px rgba(0, 0, 0, 0.3);
+    transition: right 0.3s ease;
+    z-index: 1000;
+}
+
+.help-panel.active {
+    right: 0;
+}
+
+.help-content {
+    padding: 30px;
+    color: #333;
+}
+
+.help-content h2 {
+    margin-bottom: 20px;
+    color: #2196F3;
+}
+
+.help-content h3 {
+    margin: 15px 0 10px;
+    color: #444;
+}
+
+.help-content section {
+    margin-bottom: 20px;
+}
+
+.food-dot {
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.food-dot.gold { background: #FFD700; }
+.food-dot.pink { background: #FF1493; }
+.food-dot.blue { background: #4169E1; }
+
+.close-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background: #f44336;
+    color: white;
+    font-size: 20px;
+    line-height: 30px;
+    cursor: pointer;
+    border: none;
+    padding: 0;
+    transition: all 0.3s ease;
+}
+
+.close-btn:hover {
+    background: #d32f2f;
+    transform: scale(1.1);
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.help-content {
+    animation: fadeIn 0.5s ease;
+}
+
+.food-icon {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    line-height: 20px;
+    text-align: center;
+    margin-right: 8px;
+    font-size: 16px;
+}
+
+.help-content ul li {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+} 
